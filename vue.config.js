@@ -3,7 +3,6 @@ const path = require('path');
 module.exports = {
   configureWebpack: {
     resolve: {
-      extensions: [],
       alias: {
         assets: path.resolve(__dirname, 'src/assets/'),
         common: path.resolve(__dirname, 'src/common/'),

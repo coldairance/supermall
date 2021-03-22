@@ -4,8 +4,9 @@
       <cart-list-item
       :key="index"
       v-for="(item,index) in cartList"
-      :product="item" />
+      :itemInfo="item" />
     </scroll>
+    <cart-bottom-bar/>
   </div>
 </template>
 
@@ -14,22 +15,28 @@
 import { mapGetters } from 'vuex'
 import Scroll from 'components/common/scroll/Scroll.vue'
 import CartListItem from './CartListItem.vue'
+import CartBottomBar from './CartBottomBar.vue'
 export default {
   computed: {
     ...mapGetters(['cartList'])
   },
   components: {
     Scroll,
-    CartListItem
+    CartListItem,
+    CartBottomBar
 
   }
 }
 </script>
 
 <style scoped>
-
   .wrapper {
-    height: calc(100vh - 44px);
+    position: fixed;
+    top: 44px;
+    bottom: calc(58px + 40px);
+    left: 0;
+    right: 0;
+    overflow: hidden;
   }
 
 </style>

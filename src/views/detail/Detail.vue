@@ -56,7 +56,7 @@ export default {
       recommends: [],
       themeTopYs: [],
       getThemeTopY: null,
-      currentIndex: 0
+      currentIndex: 0,
     }
   },
   components: {
@@ -69,7 +69,7 @@ export default {
     DetailParamInfo,
     DetailCommentInfo,
     GoodsList,
-    DetailBottomBar
+    DetailBottomBar,
   },
   created() {
 
@@ -120,6 +120,7 @@ export default {
     }, 300)
   },
   mounted() {
+
     // 图片加载事件监听
     const refresh = debounce(this.$refs.scroll.refreshPullUp, 300)
     this.$bus.$on('detailItemImageLoad', () => {
@@ -128,6 +129,7 @@ export default {
 
   },
   methods: {
+
     imageLoad() {
       this.$refs.scroll.refreshPullUp()
 
@@ -162,12 +164,14 @@ export default {
       const product = {}
       product.image = this.topImages[0]
       product.title = this.goods.title;
-      product.dusc = this.goods.desc;
+      product.desc = this.goods.desc;
       product.price = this.goods.realPrice;
       product.iid = this.iid;
 
       // 2.将商品添加收到购物车里
-      this.$store.dispatch('addCart', product)
+      this.$store.dispatch('addCart', product).then(res => {
+         this.$toast.show(res, 1000)
+      })
     }
   }
 }
